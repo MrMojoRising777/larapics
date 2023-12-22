@@ -15,5 +15,6 @@ use App\Http\Controllers\ImageController;
 */
 
 Route::get('/', [ImageController::class, 'index'])->name('images.index');
-
 Route::get('/images/{image}', [Imagecontroller::class, 'show'])->name('images.show');
+Route::get('/images', [Imagecontroller::class, 'create'])->name('images.create');
+Route::post('/images', [Imagecontroller::class, 'store'])->name('images.store');
