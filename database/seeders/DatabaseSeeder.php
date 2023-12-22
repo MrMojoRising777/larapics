@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         foreach ($images as $image)
         {
             Image::factory()->create([
-                'file' => $image
+                'file' => $image,
+                'dimension' => Image::getDimension($image),
             ]);
         }
     }
