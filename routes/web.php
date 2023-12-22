@@ -18,3 +18,6 @@ Route::get('/', [ImageController::class, 'index'])->name('images.index');
 Route::get('/images/{image}', [Imagecontroller::class, 'show'])->name('images.show');
 Route::get('/images', [Imagecontroller::class, 'create'])->name('images.create');
 Route::post('/images', [Imagecontroller::class, 'store'])->name('images.store');
+
+Route::get('/images/{image}/edit', [Imagecontroller::class, 'edit'])->name('images.edit');
+Route::put('/images/{image}', [Imagecontroller::class, 'update'])->name('images.update');
