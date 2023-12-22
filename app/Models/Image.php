@@ -22,4 +22,14 @@ class Image extends Model
         [$width, $height] = getimagesize(Storage::path($image));
         return $width . "x" . $height;
     }
+
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
+    }
+
+    public function fileUrl()
+    {
+        return Storage::url($this->file);
+    }
 }
