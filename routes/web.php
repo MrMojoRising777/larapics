@@ -23,3 +23,5 @@ Route::get('/images/{image}/edit', [Imagecontroller::class, 'edit'])->name('imag
 Route::put('/images/{image}', [Imagecontroller::class, 'update'])->name('images.update');
 
 Route::delete('/images/{image}', [Imagecontroller::class, 'destroy'])->name('images.destroy');
+
+Route::view('/test-blade', 'test');
