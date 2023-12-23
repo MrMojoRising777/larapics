@@ -13,7 +13,7 @@
   @endphp
   <x-icon :src="$icon" />
   <x-ui.button />
-  <x-alert type="warning" dismissible id="my-alert" class="mt-4 d-flex align-items-center" role="flash">
+  <x-alert type="warning" id="my-alert" class="mt-4" role="flash">
     <x-slot:title>
       Success
     </x-slot>
