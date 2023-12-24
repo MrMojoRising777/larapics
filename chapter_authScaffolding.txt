@@ -1,0 +1,4 @@
+>composer require laravel/ui
+>php artisan ui bootstrap --auth
+
+Change resources/views/auth/login.blade.php
