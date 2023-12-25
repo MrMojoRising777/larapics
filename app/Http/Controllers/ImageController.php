@@ -33,7 +33,11 @@ class ImageController extends Controller
 
     public function edit(Image $image)
     {
-        return view('image.edit', compact('image'));
+        if (request()->user()->id !== $image->user_id) {
+            abort(403, "Access denied");
+        }
+
+        return view("image.edit", compact('image'));
     }
 
     public function update(Image $image, ImageRequest $request)
@@ -44,7 +48,11 @@ class ImageController extends Controller
 
     public function destroy(Image $image)
     {
+        if (request()->user()->id !== $image->user_id) {
+            abort(403, "Access denied");
+        }
+
         $image->delete();
-        return to_route('images.index')->with('message', 'Image has been removed successfully');
+        return to_route('images.index')->with('message', "Image has been removed successfully");
     }
 }
