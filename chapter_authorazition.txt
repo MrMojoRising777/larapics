@@ -1,0 +1,11 @@
+>php artisan tinker
+$user1 = User::find(1);               // get user 1
+$user2 = User::find(2);               // get user 2           
+$image = Image::first();              // get image (first image belongs to user 1)
+
+Gate::allows('update-image', $image)                                          // false
+Gate::forUser($user1)->allows('update-image', $image)                         // true
+Gate::forUser($user2)->allows('update-image', $image)                         // false
+Gate::forUser($user2)->denies('update-image', $image)                         // true
+Gate::forUser($user2)->any(['update-image', 'delete-image'], $image)          // false
+Gate::forUser($user1)->any(['update-image', 'delete-image'], $image)          // true
