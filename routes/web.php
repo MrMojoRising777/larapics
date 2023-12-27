@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ListImageController;
+use App\Http\Controllers\ShowImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,8 @@ use App\Http\Controllers\ImageController;
 |
 */
 
-Route::get('/', [ImageController::class, 'index'])->name('images.index');
-Route::get('/images/{image}', [Imagecontroller::class, 'show'])->name('images.show');
+Route::get('/', ListImageController::class)->name('images.index');
+Route::get('/images/{image}', ShowImagecontroller::class)->name('images.show');
 Route::get('/images', [Imagecontroller::class, 'create'])->name('images.create');
 Route::post('/images', [Imagecontroller::class, 'store'])->name('images.store');
 
