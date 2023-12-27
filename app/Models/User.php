@@ -50,6 +50,12 @@ class User extends Authenticatable
     public function updateSettings($data)
     {
         $this->updateSocialProfile($data['social']);
+        $this->updateOptions($data['options']);
+    }
+
+    protected function updateOptions($options)
+    {
+        $this->setting()->update($options);
     }
 
     protected function updateSocialProfile($social)
