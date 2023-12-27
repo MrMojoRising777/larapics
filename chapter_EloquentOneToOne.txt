@@ -1,0 +1,16 @@
+>php artisan tinker
+use App\Models\Social
+$user = User::first()
+$social = new Social
+$social->instagram = "https://instagram.com/test"
+$social->user_id = $user->id                         // creates instance for user with id 1
+$social->save()
+
+$social = new Social
+$social->instagram = "https://instagram.com/test2"
+$social->user()->associate($user)                      // creates a new instance for user with id 1
+$social->save()
+
+$social = new Social
+$social->instagram = "https://instagram.com/test3"
+$user->social()->save($social)                         // creates a new instance for user with id 1
