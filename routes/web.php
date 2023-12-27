@@ -19,7 +19,7 @@ Route::get('/images/{image}', [Imagecontroller::class, 'show'])->name('images.sh
 Route::get('/images', [Imagecontroller::class, 'create'])->name('images.create');
 Route::post('/images', [Imagecontroller::class, 'store'])->name('images.store');
 
-Route::get('/images/{image}/edit', [Imagecontroller::class, 'edit'])->name('images.edit');
+Route::get('/images/{image}/edit', [Imagecontroller::class, 'edit'])->name('images.edit'); //->can('update', 'image');  // option 1
 Route::put('/images/{image}', [Imagecontroller::class, 'update'])->name('images.update');
 
 Route::delete('/images/{image}', [Imagecontroller::class, 'destroy'])->name('images.destroy');
