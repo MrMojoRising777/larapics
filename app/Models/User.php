@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\Role;
+use App\Models\Social;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,6 +28,19 @@ class User extends Authenticatable
     {
         $imagesCount = $this->images()->published()->count();
         return $imagesCount . " " . str()->plural('image', $imagesCount);
+    }
+
+    public function updateSettings($data)
+    {
+        $this->updateSocialProfile($data['social']);
+    }
+
+    protected function updateSocialProfile($social)
+    {
+        Social::updateOrCreate(
+            ['user_id' => $this->id],
+            $social
+        );
     }
 
     /**
