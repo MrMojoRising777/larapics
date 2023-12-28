@@ -9,10 +9,18 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public static function makeDirectory()
+    {
+        $directory = 'users';
+        Storage::makeDirectory($directory);
+        return $directory;
+    }
 
     public function images()
     {
@@ -49,6 +57,7 @@ class User extends Authenticatable
 
     public function updateSettings($data)
     {
+        $this->update($data['user']);
         $this->updateSocialProfile($data['social']);
         $this->updateOptions($data['options']);
     }
@@ -66,6 +75,21 @@ class User extends Authenticatable
         );
     }
 
+    public function profileImageUrl()
+    {
+        return Storage::url($this->profile_image ? $this->profile_image : "users/user-default.png");
+    }
+
+    public function coverImageUrl()
+    {
+        return Storage::url($this->cover_image);
+    }
+
+    public function hasCoverImage()
+    {
+        return !!$this->cover_image;
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -75,6 +99,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+        'profile_image',
+        'cover_image',
+        'city',
+        'country',
+        'about_me',
     ];
 
     /**
