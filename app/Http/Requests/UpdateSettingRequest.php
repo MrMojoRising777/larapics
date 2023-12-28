@@ -27,13 +27,13 @@ class UpdateSettingRequest extends FormRequest
             'options.disable_comments' => 'boolean',
             'options.moderate_comments' => 'boolean',
             'options.email_notification.*' => 'nullable',
-            'user.username' => 'required|max:30|unique:users,' . auth()->id(),
+            'user.username' => 'required|max:30|unique:users,username,' . auth()->id(),
             'user.name' => 'required|string',
             'user.profile_image' => 'nullable|image',
             'user.cover_image' => 'nullable|image',
-            'user.city' => 'required|string',
-            'user.country' => 'required|string',
-            'user.about_me' => 'required|string',
+            'user.city' => 'nullable|string',
+            'user.country' => 'nullable|string',
+            'user.about_me' => 'nullable|string',
         ];
     }
 

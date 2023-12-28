@@ -25,7 +25,7 @@
               value="{{ old('user.profile_image', $user->profile_image) }}">
             </div>
             <div class="mb-3">
-              <img src="images/user-default.png" width="150" alt="">
+              <img src="{{ $user->profileImageUrl() }}" width="150" alt="">
             </div>
             <div class="mb-3">
               <label class="form-label" for="city">City</label>

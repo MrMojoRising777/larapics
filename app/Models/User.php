@@ -15,13 +15,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public static function makeDirectory()
-    {
-        $directory = 'users';
-        Storage::makeDirectory($directory);
-        return $directory;
-    }
-
     public function images()
     {
         return $this->hasMany(Image::class);
@@ -73,6 +66,13 @@ class User extends Authenticatable
             ['user_id' => $this->id],
             $social
         );
+    }
+
+    public static function makeDirectory()
+    {
+        $directory = 'users';
+        Storage::makeDirectory($directory);
+        return $directory;
     }
 
     public function profileImageUrl()
