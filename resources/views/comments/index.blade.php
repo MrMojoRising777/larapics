@@ -40,15 +40,15 @@
     </table>
     {{ $comments->links() }}
   </div>
-</x-layout>
 
-@push('scripts')
-  <script>
-    setTimeout(() => {
-      const rows = document.querySelectorAll("tr[class^='table-']");
-      for (let index = 0; index < rows.length; index++) {
-        rows[index].removeAttribute('class');
-      }
-    }, 1500);
-  </script>
-@endpush
+  @push('scripts')
+    <script>
+      setTimeout(() => {
+        const rows = document.querySelectorAll("tr[class^='table-']");
+        for (let index = 0; index < rows.length; index++) {
+          rows[index].removeAttribute('class');
+        }
+      }, 1500);
+    </script>
+  @endpush
+</x-layout>
