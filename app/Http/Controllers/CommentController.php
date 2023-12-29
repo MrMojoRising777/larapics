@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateCommentRequest;
 
@@ -11,6 +12,16 @@ class CommentController extends Controller
     public function __construct()
     {
         $this->middleware(['auth']);
+    }
+
+    public function index()
+    {
+        $comments = Comment::forUser(auth()->user())
+            ->with(['user', 'image'])
+            ->latest()
+            ->paginate(10);
+
+        return view('comments.index', compact('comments'));
     }
 
     public function store(Image $image, CreateCommentRequest $request)
